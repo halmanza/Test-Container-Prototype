@@ -8,3 +8,8 @@
  - [x] Test EF core queries against actual database.
  - [x] Explore patterns for configuring Test Fixtures with a base abstract class.
  - [x] Understand general configuration of Test Containers in .NET Core.
+
+#### Requirements
+
+- A running instance of the docker engine via GUI or CLI for tests to work properly.
+- .NET 8 SDK or Runtime
