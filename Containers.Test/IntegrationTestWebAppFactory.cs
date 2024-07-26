@@ -15,19 +15,10 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
     private const string Password = "learning123!";
     private const string Username = "sa";
     private const ushort MsSqlPort = 1433;
-    private readonly MsSqlContainer _msSqlContainer = new MsSqlBuilder()
-        .WithEnvironment("ACCEPT_EULA", "Y")
-        .WithEnvironment("MSSQL_SA_PASSWORD", Password)
-        .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(MsSqlPort))
-        .Build();
+    private readonly MsSqlContainer _msSqlContainer = new MsSqlBuilder().Build();
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        var host = _msSqlContainer.Hostname;
-        var port = _msSqlContainer.GetMappedPublicPort(MsSqlPort);
-
-        var connectionString =$"Server={host},{port};Database={Database};User Id={Username};Password={Password};TrustServerCertificate=True";
-        
         builder.ConfigureTestServices(services =>
         {
             var descriptor =
@@ -38,9 +29,8 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
 
             services.AddDbContext<ApplicationDataContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(_msSqlContainer.GetConnectionString());
             });
-
         });
     }
     public async Task InitializeAsync()
