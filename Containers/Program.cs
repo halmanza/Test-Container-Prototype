@@ -1,4 +1,5 @@
 using Containers.Repository;
+using Containers.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDataContext>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+// builder.Services.AddTransient<IUnitOfWork, UserRepository>();
 
 var app = builder.Build();
 

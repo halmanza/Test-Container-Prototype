@@ -11,10 +11,4 @@ public class ApplicationDataContext(DbContextOptions options) : DbContext(option
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDataContext).Assembly);
     }
-
-    public async Task AddUser(User user)
-    {
-        await Users.AddAsync(user);
-        await SaveChangesAsync();
-    }
 }

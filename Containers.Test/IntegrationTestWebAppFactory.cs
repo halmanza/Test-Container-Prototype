@@ -1,6 +1,5 @@
 ﻿using Containers.Repository;
 using DotNet.Testcontainers.Builders;
-using DotNet.Testcontainers.Containers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -44,7 +43,6 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
 
         });
     }
-
     public async Task InitializeAsync()
     {
         await _msSqlContainer.StartAsync();
