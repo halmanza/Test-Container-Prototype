@@ -11,5 +11,5 @@
 
 #### Requirements
 
-- A running instance of the docker engine via GUI or CLI for tests to work properly.
-- .NET 8 SDK or Runtime
+- A running instance of the docker engine via GUI or CLI to properly run the tests.
+- .NET 8 SDK 
