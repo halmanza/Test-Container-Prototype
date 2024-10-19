@@ -11,10 +11,6 @@ namespace Containers.Test;
 
 public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
-    private const string Database = "master";
-    private const string Password = "learning123!";
-    private const string Username = "sa";
-    private const ushort MsSqlPort = 1433;
     private readonly MsSqlContainer _msSqlContainer = new MsSqlBuilder().Build();
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -33,6 +29,7 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
             });
         });
     }
+    
     public async Task InitializeAsync()
     {
         await _msSqlContainer.StartAsync();

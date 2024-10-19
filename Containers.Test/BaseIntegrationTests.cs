@@ -19,7 +19,6 @@ public abstract class BaseIntegrationTests : IClassFixture<IntegrationTestWebApp
         DataContext = scope.ServiceProvider.GetRequiredService<ApplicationDataContext>();
         DataContext.Database.Migrate();
         UserRepository = scope.ServiceProvider.GetRequiredService<IUserRepository>();
-        
     }
 }
 
